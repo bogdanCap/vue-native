@@ -6,7 +6,7 @@ import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import HelloWorld from './components/HelloWorld.vue'
+import peopleRoutes from './router/routes.vue';
 
 // 1. Use plugin.
 // This installs <router-view> and <router-link>,
@@ -14,26 +14,23 @@ import HelloWorld from './components/HelloWorld.vue'
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
-// 2. Define route components
-const Home = { template: '<div>home</div>' }
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-const Unicode = { template: '<div>unicode</div>' }
+/*
+//axios catch all error
+axios.interceptors.response.use(null, function(error) {
+    console.warn('Error status', error.response.status);
+    return Promise.reject(error);
+});
+*/
 
 
-// 3. Create the router
 const router = new VueRouter({
     mode: 'history',
     base: __dirname,
     routes: [
-        { path: '/', component: Home },
-        { path: '/foo', component: Foo },
-        { path: '/bar', component: Bar },
-        { path: '/test/:id', component: HelloWorld },
-        { path: '/é', component: Unicode },
-        { path: "*", template: '<h1>Page not found</h1>' }
+        ...peopleRoutes
     ]
 });
+
 Vue.config.productionTip = false;
 new Vue({
     router,
