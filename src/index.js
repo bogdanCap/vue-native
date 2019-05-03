@@ -14,6 +14,10 @@ import peopleRoutes from './router/routes.vue';
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
+
+
+
+Vue.config.productionTip = false;
 /*
 //axios catch all error
 axios.interceptors.response.use(null, function(error) {
@@ -24,14 +28,13 @@ axios.interceptors.response.use(null, function(error) {
 
 
 const router = new VueRouter({
-    mode: 'history',
-    base: __dirname,
+   // mode: 'history',
+  //  base: __dirname,
     routes: [
         ...peopleRoutes
     ]
 });
 
-Vue.config.productionTip = false;
 new Vue({
     router,
     //store,

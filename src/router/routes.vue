@@ -11,6 +11,7 @@
         { path: '/bar', component: Bar },
         { path: '/test/:id', component: HelloWorld },
         { path: '/é', component: Unicode },
-        { path: "*", template: '<h1>Page not found</h1>' }
+        { path: "*", template: '<h1>Page not found</h1>' },
+        { path: '/my/segment/test', component: HelloWorld }
     ];
 </script>

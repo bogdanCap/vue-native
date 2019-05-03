@@ -27,6 +27,8 @@
             <li><router-link to="/é?t=%25ñ">/é?t=%ñ</router-link></li>
             <li><router-link to="/é#%25ñ">/é#%25ñ</router-link></li>
             <li><router-link to="/test/id?search=test">test</router-link></li>
+            <li><router-link to="/my/segment/test">my</router-link></li>
+
         </ul>
         <pre id="query-t">{{ $route.query.t }}</pre>
         <pre id="hash">{{ $route.hash }}</pre>
@@ -44,6 +46,13 @@
 
     export default {
         name: 'App',
+        mounted() {
+            /*
+            let recaptchaScript = document.createElement('script');
+            recaptchaScript.setAttribute('src', 'disc/foo.bundle.js');
+            document.head.appendChild(recaptchaScript)
+            */
+        }
        // components: {
       //      HelloWorld
       //  }

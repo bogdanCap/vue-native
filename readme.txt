@@ -5,7 +5,6 @@ npm run serve
 nginx config:
     server {
       listen 80 default_server;
-      listen [::]:80 default_server;
 
       root /var/www/vue-basic;
 
@@ -14,19 +13,7 @@ nginx config:
       server_name vue-basic.com;
 
       location / {
-        try_files $uri $uri/ @rewrites;
+        try_files $uri $uri/ /index.html;
       }
-
-      location @rewrites {
-        rewrite ^(.+)$ /index.html last;
-      }
-
-      location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
-        # Some basic cache-control for static files to be sent to the browser
-        expires max;
-        add_header Pragma public;
-        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
-      }
-
     }
 
