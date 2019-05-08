@@ -7,15 +7,13 @@ import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import peopleRoutes from './router/routes.vue';
+import "./scss/_main.scss"; //scss loading
 
 // 1. Use plugin.
 // This installs <router-view> and <router-link>,
 // and injects $router and $route to all router-enabled child components
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-
-
-
 
 Vue.config.productionTip = false;
 /*
@@ -28,7 +26,7 @@ axios.interceptors.response.use(null, function(error) {
 
 
 const router = new VueRouter({
-   // mode: 'history',
+    //mode: 'history',
   //  base: __dirname,
     routes: [
         ...peopleRoutes
