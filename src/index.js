@@ -5,9 +5,11 @@ import App from './App.vue'
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
+import peopleRoutes from './router/route.vue';
+import module from './store/store.vue';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import peopleRoutes from './router/routes.vue';
 import "./scss/_main.scss"; //scss loading
 
 // 1. Use plugin.
@@ -36,19 +38,7 @@ const router = new VueRouter({
 });
 
 const store = new Vuex.Store({
-    state: {
-        count: 0
-    },
-    mutations: {
-        increment (state) {
-            state.count++
-        },
-        decrement (state) {
-            if (state.count > 0) {
-                state.count--
-            }
-        }
-    }
+    ...module
 });
 
 new Vue({
