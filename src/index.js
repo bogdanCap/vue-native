@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
+import Vuex from 'vuex';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import peopleRoutes from './router/routes.vue';
@@ -14,6 +15,7 @@ import "./scss/_main.scss"; //scss loading
 // and injects $router and $route to all router-enabled child components
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 /*
@@ -33,9 +35,25 @@ const router = new VueRouter({
     ]
 });
 
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        },
+        decrement (state) {
+            if (state.count > 0) {
+                state.count--
+            }
+        }
+    }
+});
+
 new Vue({
     router,
-    //store,
+    store,
     render: h => h(App)
 }).$mount("#app");
 

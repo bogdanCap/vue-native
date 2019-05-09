@@ -91,9 +91,11 @@
             '$route' (to, from) {
                 // react to route changes...
                 this.search = to.query.search;
+
+
+
             }
         },
-
         data() {
             return {
                 msg: 'Welcome to Your Vue.js App',
@@ -102,8 +104,14 @@
         },
         created() {
             //get route segment and request parameters
-            console.log(this.$route.query.search);
-            console.log(this.$route.params.id);
+         //   console.log(this.$route.query.search);
+          //  console.log(this.$route.params.id);
+         //   console.log(this.count);
+        },
+        computed: {
+            count () {
+                return this.$store.state.count
+            }
         }
     }
 </script>

@@ -23,54 +23,60 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/">Home</router-link>
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/foo">Foo</router-link>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/bar">Bar</router-link>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
                                         Bar event
                                     </router-link>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/é">/é</router-link>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/é?t=%25ñ">/é?t=%ñ</router-link>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/é#%25ñ">/é#%25ñ</router-link>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/test/id?search=test">test</router-link>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
                                     <router-link to="/my/segment/test">my</router-link>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" v-on:click="clickRoute" href="#">
+                                    <router-link to="/product">Products</router-link>
                                 </a>
                             </li>
 
@@ -111,20 +117,28 @@
 </template>
 
 <script>
-   // import HelloWorld from './components/HelloWorld.vue'
-
     export default {
         name: 'App',
         mounted() {
-            /*
-            let recaptchaScript = document.createElement('script');
-            recaptchaScript.setAttribute('src', 'disc/foo.bundle.js');
-            document.head.appendChild(recaptchaScript)
-            */
+
+        },
+        computed: {
+            count () {
+                return this.$store.state.count
+            }
+        },
+        created() {
+
+        },
+        methods: {
+            clickRoute: function (event) {
+                console.log('click');
+                console.log(this.$store.state.count);
+
+                //alert(event.target.tagName)
+
+            }
         }
-       // components: {
-      //      HelloWorld
-      //  }
     }
 </script>
 

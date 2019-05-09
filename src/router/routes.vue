@@ -5,6 +5,7 @@
     const Bar = { template: '<div>bar</div>' };
     const Unicode = { template: '<div>unicode</div>' };
     const PageNotFound = { template: '<div><h1 style="text-align: center">Page not found</h1></div>' };
+    import Product from '../components/Product.vue';
 
     export default  [
         { path: '/', component: Home },
@@ -13,6 +14,7 @@
         { path: '/test/:id', component: HelloWorld },
         { path: '/é', component: Unicode },
         { path: '/my/segment/test', component: HelloWorld },
+        { path: '/product', component: Product },
         { path: "/*", component: PageNotFound}
     ];
 </script>
