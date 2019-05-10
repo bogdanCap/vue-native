@@ -94,10 +94,13 @@
                             </li>-->
 
                         </ul>
+                        <button data-toggle="modal" data-target="#exampleModal" style='font-size:24px'>{{productCount}} <i class='fas fa-shopping-cart'></i></button>
+                        <!--
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
+                        -->
                     </div>
                 </nav>
             </div>
@@ -111,20 +114,63 @@
         <router-view class="view">
 
         </router-view>
+
+        <!--Modal basket -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Basket</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-sm-12">
+
+
+                                <div class="list-group" v-for="product in basketProducts">
+                                    <button  v-on:click="selectProduct(product.id)" type="button" class="list-group-item list-group-item-action" v-bind:class="{ active: isBasketProductSelect == product.id }">
+                                        <p> {{product.name}}</p>
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" v-on:click="clearBasket" class="btn btn-primary">Clear basket</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 </template>
 
 <script>
     export default {
         name: 'App',
+        data: function () {
+            return {
+                isBasketProductSelect: 0
+            }
+        },
         mounted() {
 
         },
         computed: {
-            count () {
-                return this.$store.state.count
+            productCount () {
+                return this.$store.state.goods.length;//this.$store.state.count
+            },
+            basketProducts () {
+                return this.$store.state.goods;
             }
         },
         created() {
@@ -132,11 +178,18 @@
         },
         methods: {
             clickRoute: function (event) {
-                console.log('click');
-                console.log(this.$store.state.count);
+               // console.log('click');
+               // console.log(this.$store.state.count);
 
                 //alert(event.target.tagName)
 
+            },
+            selectProduct: function (productId) {
+                this.isBasketProductSelect = productId;
+            },
+            clearBasket: function () {
+                this.$store.commit('clearGoods');
+                this.isBasketProductSelect = 0;
             }
         }
     }

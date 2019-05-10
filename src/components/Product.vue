@@ -1,60 +1,57 @@
 <template>
     <div class="row">
-        <div class="col-sm-6">
-            <button type="button" v-on:click="selectProduct" class="btn btn-info">Product 1</button>
+        <div class="col-sm-2" v-for="product in products">
+            <transition name="slide-fade">
+                <div v-if="show !== product.id" @click="hideProduct(product.id)" class="list-group">
+                <a  href="#" v-on:click="selectProduct(product)" class="list-group-item list-group-item-action list-group-item-primary">
+                    {{product.name}}
+                    <p style="padding: 0px">price = {{product.price}}</p>
+                </a>
+            </div>
+            </transition>
         </div>
-        <div class="col-sm-6">
-            <button type="button" v-on:click="selectProduct" class="btn btn-info">Product 2</button>
-        </div>
-        
-        <div class="col-m-12">
-            <button type="button" v-on:click="decreaseProduct" class="btn btn-danger">Remove one product</button>
-        </div>
+
     </div>
 </template>
 
 <script>
     export default {
         name: 'Product',
-
         watch: {
             '$route' (to, from) {
                 // react to route changes...
-
-
-
-
             }
         },
         methods: {
-            selectProduct: function (event) {
-                // `this` inside methods points to the Vue instance
-
-                console.log('select product and increase count');
-                this.$store.commit('increment');
-                // `event` is the native DOM event
-
-                //alert(event.target.tagName)
-
+            selectProduct: function (product) {
+                this.$store.commit('addGoods', product);
             },
-            decreaseProduct: function () {
-                this.$store.commit('decrement');
-            }
-        },
+            hideProduct: function (productId) {
+                this.show = productId;
+            },
 
+        },
         data() {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                search: this.$route.query.search
+                search: this.$route.query.search,
+                products: [
+                    {id:1, name: 'Enduro', price: 2233},
+                    {id:2, name: 'Calipso', price: 4513},
+                    {id:3, name: 'Frost', price: 33},
+                    {id:4, name: 'Trek', price: 23},
+                    {id:5, name: 'Potato', price: 56},
+                    {id:6, name: 'Espero', price: 6678}
+                ],
+                show: 0
             }
         },
         created() {
             //get route segment and request parameters
-            console.log(this.count);
         },
         computed: {
             count () {
-                return this.$store.state.count
+                //return this.$store.state.count
             }
         }
     }

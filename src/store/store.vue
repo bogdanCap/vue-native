@@ -1,6 +1,7 @@
 <script>
     const state = {
-        count: 0
+        count: 0,
+        goods: []
     };
 
     const mutations = {
@@ -11,6 +12,17 @@
             if (state.count > 0) {
                 state.count--
             }
+        },
+        addGoods (state, product) {
+            var existProduct = state.goods.filter(function(elem){
+                if(elem.id == product.id) return elem;
+            });
+            if(existProduct.length == 0) {
+                state.goods.push(product);
+            }
+        },
+        clearGoods (state) {
+            state.goods = []
         }
     };
 
