@@ -1,9 +1,9 @@
 <template>
     <div class="row">
-        <div class="col-sm-2" v-for="product in products">
+        <div class="col-sm-2" v-for="(product, index) in products">
             <transition name="slide-fade">
-                <div v-if="show !== product.id" @click="hideProduct(product.id)" class="list-group">
-                <a  href="#" v-on:click="selectProduct(product)" class="list-group-item list-group-item-action list-group-item-primary">
+                <div v-if="product.show" @click="hideProduct(product.id, index)" class="list-group">
+                <a  href="#" v-on:click="addProduct(product)" class="list-group-item list-group-item-action list-group-item-primary">
                     {{product.name}}
                     <p style="padding: 0px">price = {{product.price}}</p>
                 </a>
@@ -23,11 +23,11 @@
             }
         },
         methods: {
-            selectProduct: function (product) {
+            addProduct: function (product) {
                 this.$store.commit('addGoods', product);
             },
-            hideProduct: function (productId) {
-                this.show = productId;
+            hideProduct: function (productId, index) {
+               this.products[index].show = false;
             },
 
         },
@@ -36,22 +36,23 @@
                 msg: 'Welcome to Your Vue.js App',
                 search: this.$route.query.search,
                 products: [
-                    {id:1, name: 'Enduro', price: 2233},
-                    {id:2, name: 'Calipso', price: 4513},
-                    {id:3, name: 'Frost', price: 33},
-                    {id:4, name: 'Trek', price: 23},
-                    {id:5, name: 'Potato', price: 56},
-                    {id:6, name: 'Espero', price: 6678}
+                    {id:1, name: 'Enduro', price: 2233, show: true},
+                    {id:2, name: 'Calipso', price: 4513, show: true},
+                    {id:3, name: 'Frost', price: 33, show: true},
+                    {id:4, name: 'Trek', price: 23, show: true},
+                    {id:5, name: 'Potato', price: 56, show: true},
+                    {id:6, name: 'Espero', price: 6678, show: true}
                 ],
-                show: 0
+                show: 0,
             }
         },
         created() {
             //get route segment and request parameters
         },
         computed: {
-            count () {
-                //return this.$store.state.count
+            test() {
+                console.log("in if");
+
             }
         }
     }

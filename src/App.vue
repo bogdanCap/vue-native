@@ -106,10 +106,7 @@
             </div>
 
 
-        <!--
-        <pre id="query-t">{{ $route.query.t }}</pre>
-        <pre id="hash">{{ $route.hash }}</pre>
-        -->
+
         <!--route body display here -->
         <router-view class="view">
 
